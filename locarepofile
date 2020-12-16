@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: A simple EC2 instance by Charlotte
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-east-1e
+      ImageId: ami-04bf6dcdc9ab498ca
+      SubnetId: subnet-032819452fe8adc9c
+      InstanceType: t2.micro
+      SecurityGroupIds: 
+        - !Ref InstanceSecurityGroup
+  MyEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MyEC2Instance 
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow ssh to client host
+      GroupName: web-sg 
+      VpcId: vpc-057a20f20c2a90d63
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 108.15.31.78/32
