@@ -17,7 +17,7 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Allow ssh to client host
+      GroupDescription: Allow ssh to host client
       GroupName: web-sg 
       VpcId: vpc-057a20f20c2a90d63
       SecurityGroupIngress:
